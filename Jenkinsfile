@@ -21,20 +21,12 @@ pipeline{
             steps {
                 withCredentials([string(credentialsId: 'SONARQUBE_APIKEY', variable: 'SONARQUBE_APIKEY')]) {
                     withSonarQubeEnv('SonarqubeServer_GROUP2') {
-                        sh 'echo "sonar.host.url=https://sonarqube.ibm-kapamilya-devops.com" > sonar-project.properties'
-                        sh 'echo "sonar.login=$SONARQUBE_APIKEY" >> sonar-project.properties'
-                        sh 'echo "sonar.projectKey=Group:2" >> sonar-project.properties'
-                        sh 'echo "sonar.projectVersion=$BUILD_NUMBER" >> sonar-project.properties'
-                        sh 'echo "sonar.sourceEncoding=UTF-8" >> sonar-project.properties'
-                        sh 'echo "sonar.sources=src" >> sonar-project.properties'
-                        sh 'echo "sonar.exclusions=**/node_modules/**,**/*.spec.ts" >> sonar-project.properties'
-                        sh 'echo "sonar.tests=src" >> sonar-project.properties'
-                        sh 'echo "sonar.test.inclusions=**/*.spec.ts" >> sonar-project.properties'
-                        sh 'echo "sonar.typescript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties'
-                        sh '/usr/local/bin/sonar-scanner'
+                        sh '/usr/local/bin/sonar-scanner -Dsonar.login=$SONARQUBE_APIKEY -Dsonar.projectVersion=$BUILD_NUMBER'
                     }
                 }
-            }
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                } 
         }
         stage("Quality Gate") {
             steps {
