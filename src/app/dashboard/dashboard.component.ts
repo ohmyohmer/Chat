@@ -9,28 +9,28 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class DashboardComponent implements OnInit {
   dataLists: any = [];
   formData;
-  persons: any = [];
+  messages: any = [];
+  public now: Date = new Date();
 
   constructor() {
   }
 
   onSubmit(data) {
-    this.dataLists.push({id: Math.random().toString(36).substr(2, 9), firstName: data.firstName, lastName: data.lastName});
-    localStorage.setItem('persons', JSON.stringify(this.dataLists));
+    this.dataLists.push({id: Math.random().toString(36).substr(2, 9), message: data.message, date: new Date()});
+    localStorage.setItem('messages', JSON.stringify(this.dataLists));
     this.formData.reset();
-    this.displayPersons()
+    this.displayMessages()
   }
 
   ngOnInit() {
-    this.displayPersons()
+    this.displayMessages()
     this.formData = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required)
+      message: new FormControl('', Validators.required)
     });
   }
 
-  displayPersons() {
-    this.persons = JSON.parse(localStorage.getItem('persons'));
+  displayMessages() {
+    this.messages = JSON.parse(localStorage.getItem('messages'));
   }
 
 }
