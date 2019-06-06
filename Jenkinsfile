@@ -1,4 +1,3 @@
-
 pipeline{
     agent any
     stages {
@@ -27,6 +26,7 @@ pipeline{
                 timeout(time: 2, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 } 
+            }
         }
         stage('Build') {
             steps {
