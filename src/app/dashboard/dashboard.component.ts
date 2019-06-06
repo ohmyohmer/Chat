@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     this.dataLists.push({id: Math.random().toString(36).substr(2, 9), firstName: data.firstName, lastName: data.lastName});
     localStorage.setItem('persons', JSON.stringify(this.dataLists));
     this.formData.reset();
-    this.displayPersons()
+    this.displayPersons();
   }
 
   ngOnInit() {
