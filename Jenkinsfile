@@ -18,9 +18,9 @@ pipeline{
         }
         stage('Sonarqube Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'SONARQUBE_APIKEY', variable: 'SONARQUBE_APIKEY')]) {
+                withCredentials([string(credentialsId: 'SONARQUBE_APIKEY_', variable: 'SONARQUBE_APIKEY_')]) {
                     withSonarQubeEnv('SonarqubeServer_GROUP2') {
-                        sh '/usr/local/bin/sonar-scanner -Dsonar.login=$SONARQUBE_APIKEY -Dsonar.projectVersion=$BUILD_NUMBER'
+                        sh '/usr/local/bin/sonar-scanner -Dsonar.login=$SONARQUBE_APIKEY_ -Dsonar.projectVersion=$BUILD_NUMBER'
                     }
                 }
                 timeout(time: 2, unit: 'MINUTES') {
