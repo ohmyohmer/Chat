@@ -35,13 +35,13 @@ pipeline{
         }
         stage('Upload') {
             steps {
-                withCredentials([string(credentialsId: 'ARTIFACTORY_USERNAME', variable: 'ARTIFACTORY_USERNAME'), string(credentialsId: 'ARTIFACTORY_PASSWORD', variable: 'ARTIFACTORY_PASSWORD')]) {
-                    sh '''
-                        ARTIFACT_NAME=artifact.group2.$BUILD_NUMBER.tar.bz2
-                        tar -cj dist/* > $ARTIFACT_NAME
-                        curl -u$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $ARTIFACT_NAME "https://jfrog.ibm-kapamilya-devops.com/artifactory/generic-local/$ARTIFACT_NAME"
-                    '''
-                }
+                // withCredentials([string(credentialsId: 'ARTIFACTORY_USERNAME', variable: 'ARTIFACTORY_USERNAME'), string(credentialsId: 'ARTIFACTORY_PASSWORD', variable: 'ARTIFACTORY_PASSWORD')]) {
+                //     sh '''
+                //         ARTIFACT_NAME=artifact.group2.$BUILD_NUMBER.tar.bz2
+                //         tar -cj dist/* > $ARTIFACT_NAME
+                //         curl -u$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $ARTIFACT_NAME "https://jfrog.ibm-kapamilya-devops.com/artifactory/generic-local/$ARTIFACT_NAME"
+                //     '''
+                // }
             }
         }
     }
