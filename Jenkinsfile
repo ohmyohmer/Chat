@@ -35,7 +35,13 @@ pipeline{
         }
         stage('Upload') {
             steps {
-                echo "Remove upload stage for the meantime"
+                withCredentials([string(credentialsId: 'ARTIFACTORY_USERNAME_', variable: 'ARTIFACTORY_USERNAME_'), string(credentialsId: 'ARTIFACTORY_PASSWORD_', variable: 'ARTIFACTORY_PASSWORD_')]) {
+                    sh '''
+                        ARTIFACT_NAME=artifact.group2.$BUILD_NUMBER.tar.bz2
+                        tar -cj dist/* > $ARTIFACT_NAME
+                        curl -u$ARTIFACTORY_USERNAME_:$ARTIFACTORY_PASSWORD_ -T $ARTIFACT_NAME "https://jfrog.ibm-kapamilya-devops.com/artifactory/generic-local/$ARTIFACT_NAME"
+                    '''
+                }
             }
         }
     }
