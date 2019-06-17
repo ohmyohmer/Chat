@@ -1,24 +1,71 @@
-<p>Michael Escueta's Target Persons</p>
+<!-- Chat -->
+<div class="main-sidebar sidebar-chat" id="sidebarChat">
+  <div class="sidebar-header">
+  	<div class="left">
+  		<div class="user-wrapper">
+  			<span class="user-image">
+	        	<img src="assets/images/man-2.png" alt="Avatar">
+	      	</span>
+  			<span class="username">@username</span>
+  		</div>
+  	</div>
+  	<div class="right">
+  		<img src="assets/images/logo.png" alt="Hello Kapamilya" class="logo">
+  	</div>
+  </div>
+  <div class="sidebar-body">
+    <div class="chat-convo tribe-chat active" id="tribeChat">
+      <div class="content" #scrollMe [scrollTop]="scrollMe.scrollHeight"> 
+        <div class="message-container">
+          <span class="username">username</span>
+          <div class="message-details">
+            <p>message</p>
+            <span class="time">message.created_dt * 1000 | date:'MMM dd | hh:mm a'</span>
+          </div>
+          <span class="user-image">
+            <img src="assets/images/man-1.png" alt="Avatar">
+          </span>
+        </div>
+        <div class="message-container owner">
+          <span class="username">username</span>
+          <div class="message-details">
+            <p>message</p>
+            <span class="time">message.created_dt * 1000 | date:'MMM dd | hh:mm a'</span>
+          </div>
+          <span class="user-image">
+            <img src="assets/images/girl-1.png" alt="Avatar">
+          </span>
+        </div>
+        <div class="message-container">
+          <span class="username">username</span>
+          <div class="message-details">
+            <p>message</p>
+            <span class="time">message.created_dt * 1000 | date:'MMM dd | hh:mm a'</span>
+          </div>
+          <span class="user-image">
+            <img src="assets/images/man-2.png" alt="Avatar">
+          </span>
+        </div>
 
-<form [formGroup] = "formData" (ngSubmit)="onSubmit(formData.value)">
-  <input placeholder="First Name" formControlName="firstName"/>
-  <input placeholder="Last Name" formControlName="lastName"/>
-  <input type="submit" [disabled]="!formData.valid" value="Save" />
-</form>
-<br />
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let person of persons">
-      <td> {{person.id}} </td>
-      <td> {{person.firstName}} </td>
-      <td> {{person.lastName}} </td>
-    </tr>
-  </tbody>
-</table>
+        <div class="message-container" *ngFor="let message of messages">
+          <span class="username">username</span>
+          <div class="message-details">
+            <p>{{message.message}}</p>
+            <span class="time">{{ message.date | date:'medium' }}</span>
+          </div>
+          <span class="user-image">
+            <img src="assets/images/man-2.png" alt="Avatar">
+          </span>
+        </div>
+
+      </div>
+      <div class="chat-form">
+      	<form [formGroup]="formData" (ngSubmit)="onSubmit(formData.value)">
+        	<input type="text" placeholder="Talk to your Kapamilya..." #chatMessage (keyup.enter)="sendTribeChat($event, tribeChatMessage)" formControlName="message">
+        	<button class="btn btn-post" [disabled]="!formData.valid">POST</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Chat -->

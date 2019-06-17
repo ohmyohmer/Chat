@@ -8,22 +8,26 @@
 // @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
 // }
 
-// Small devices
-@media (min-width: $screen-xs) {
 
-}
-
-// Medium devices
-@media (min-width: $screen-sm) {
+// Largest devices
+@media (max-width: $screen-lg) {
 
 }
 
 // Large devices
-@media (min-width: $screen-md) {
+@media (max-width: $screen-md) {
 
 }
 
-// Largest devices
-@media (min-width: $screen-lg) {
 
+// Medium devices
+@media (max-width: $screen-sm) {
+
+}
+
+// Small devices
+@media (max-width: $screen-xs) {
+	.message-container {
+		width: 100%;
+	}
 }
