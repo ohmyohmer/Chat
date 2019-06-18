@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cashew": {
+    "kapamilya-chat": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cashew",
+            "outputPath": "dist/kapamilya-chat",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cashew:build"
+            "browserTarget": "kapamilya-chat:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cashew:build:production"
+              "browserTarget": "kapamilya-chat:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cashew:build"
+            "browserTarget": "kapamilya-chat:build"
           }
         },
         "test": {
@@ -109,18 +109,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cashew:serve"
+            "devServerTarget": "kapamilya-chat:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cashew:serve:production"
+              "devServerTarget": "kapamilya-chat:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cashew",
+  "defaultProject": "kapamilya-chat",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
